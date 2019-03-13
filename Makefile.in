@@ -150,6 +150,10 @@ ifeq "$(GCCMAJORGTEQ4)" "1"
 	LDFLAGS += -Wl,-z,relro,-z,now
 	# Ubuntu optimization flag
 	LDFLAGS += -Wl,--hash-style=gnu
+	# export variables to dinamically loaded libraries;
+	# solves undefined symbol lua_settop when requesting 
+	# external libraries from within lua script
+	LDFLAGS += -Wl,--export-dinamic
 endif # gcc >= 4.x.x
 endif # linux
 
